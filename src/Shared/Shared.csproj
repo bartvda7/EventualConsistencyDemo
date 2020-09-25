@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <PackageReference Include="LiteDB" Version="5.0.9" />
+    <PackageReference Include="MediatR" Version="8.1.0" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.1" />
     <PackageReference Include="NServiceBus" Version="7.4.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>

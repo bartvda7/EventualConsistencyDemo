@@ -1,12 +1,15 @@
 ﻿using EventualConsistencyDemo.Hubs;
 using LiteDB;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.Hosting.Helpers;
 using Shared.Configuration;
+using Shared.Hubs;
 
 namespace EventualConsistencyDemo
 {
@@ -21,13 +24,18 @@ namespace EventualConsistencyDemo
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // We're using NServiceBus anyway, so let's use it to scan all assemblies.
+            var assemblyScannerResults = new AssemblyScanner().GetScannableAssemblies();
+
             services.AddControllersWithViews();
 
             services.AddSignalR();
 
             services.AddScoped(_ => new LiteRepository(Database.DatabaseConnectionstring));
-         
-            //services.AddMemoryCache();
+
+            services.AddMediatR(assemblyScannerResults.Assemblies.ToArray());
+
+            // services.AddMemoryCache();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

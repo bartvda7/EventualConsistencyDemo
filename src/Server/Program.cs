@@ -10,7 +10,7 @@ namespace Server
     {
         static async Task Main(string[] args)
         {
-            var endpointConfiguration = new EndpointConfiguration("server").ApplyCommonConfiguration();
+            var endpointConfiguration = new EndpointConfiguration("EventualConsistencyReceiver").ApplyCommonConfiguration();
 
             endpointConfiguration.RegisterComponents(s =>
             {

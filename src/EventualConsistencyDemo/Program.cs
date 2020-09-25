@@ -25,7 +25,7 @@ namespace EventualConsistencyDemo
             // Configure NServiceBus
             host.UseNServiceBus(hostBuilderContext =>
             {
-                var endpointConfiguration = new EndpointConfiguration("EventualConsistencyDemo");
+                var endpointConfiguration = new EndpointConfiguration("EventualConsistencySender");
                 endpointConfiguration.ApplyCommonConfiguration(routingConfig =>
                 {
                     routingConfig.RouteToEndpoint(typeof(Shared.Commands.SubmitOrder), "server");
